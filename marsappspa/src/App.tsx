@@ -32,4 +32,39 @@ function App() {
   )
 }
 
-export default App
+
+export function Nasa() {
+    // const [count, setCount] = useState(0);
+
+    return (
+        <>
+            <title>Welcome to Nasa!</title>
+            <img
+                src="https://upload.wikimedia.org/wikipedia/commons/e/e5/NASA_logo.svg"
+                alt="NASA Logo"
+                width="200"
+            />
+            <p>Welcome to Nasa!</p>
+            <p>You are here</p>
+        </>
+    )
+}
+
+// @ts-ignore
+export function TitleImageTemplate({ title, image, p1, p2 }) {
+    return (
+        <>
+            <h1>{title}</h1>
+            <img
+                src={image}
+                alt="Logo"
+                width="200"
+            />
+            <p>{p1}</p>
+            <p>{p2}</p>
+        </>
+    )
+}
+
+
+export default App;
