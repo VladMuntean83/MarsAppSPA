@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, createContext, useContext } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
@@ -90,40 +90,58 @@ function CounterTemplate() {
         </>)
 }
 
-function Component1()  {
+// Create a context for the counter hook
+const counterContext = createContext(undefined);
 
-    // State is and should be here (root of complex tree)
+// Propagate information to all children
+const Counting:  React.FC<{ children: React.ReactNode }> = ({ children }) => {
     const [count, setCount] = useState(0);
 
-    const increment = () => setCount((count) => count + 1);
+    return (
+        // @ts-ignore
+        <counterContext.Provider value = {[ count, setCount ]}>
+            { children }
+        </counterContext.Provider>
+    );
+}
+
+function Component1()  {
 
     return (
         <div>
-            <Component2 increment={increment} />
-            <Component3 count={count} />
+            <Counting>
+                <Component2 />
+                <Component3 />
+            </Counting>
         </div>
     );
 }
 
 // @ts-ignore
-function Component2({ increment }) {
+function Component2() {
+    // @ts-ignore
+    const [_, setCount] = useContext(counterContext);
+    const increment = () => setCount((count: number) => count + 1);
+
     return <button onClick={increment}>increment me!</button>;
 }
 
 // @ts-ignore
-function Component3({ count }) {
+function Component3() {
+    // @ts-ignore
     return (
         <div>
-            <Component4 count={count} />
+            <Component4 />
             <p>counter is being updated</p>
         </div>
     );
 }
 
 // @ts-ignore
-function Component4 ({ count }) {
+function Component4 () {
+    // @ts-ignore
+    const [count, _] = useContext(counterContext);
     return <div>count is {count}</div>;
 }
-
 
 export default App;
