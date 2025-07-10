@@ -74,6 +74,14 @@ export function TitleImageTemplate({ title, image, p1, p2 }) {
             }>
                 count is {count}
             </button>
+
+            <button onClick={() => {
+                localStorage.setItem("count", "0");
+                setCount(0);
+            }
+            }>
+                reset count
+            </button>
         </>
     )
 }
