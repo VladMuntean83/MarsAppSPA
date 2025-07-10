@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
@@ -34,8 +34,6 @@ function App() {
 
 
 export function Nasa() {
-    // const [count, setCount] = useState(0);
-
     return (
         <>
             <title>Welcome to Nasa!</title>
@@ -52,6 +50,12 @@ export function Nasa() {
 
 // @ts-ignore
 export function TitleImageTemplate({ title, image, p1, p2 }) {
+    const [count, setCount] = useState(0);
+
+    useEffect(() => {
+        setCount(Number(localStorage.getItem("count")))
+    }, []);
+
     return (
         <>
             <h1>{title}</h1>
@@ -62,6 +66,14 @@ export function TitleImageTemplate({ title, image, p1, p2 }) {
             />
             <p>{p1}</p>
             <p>{p2}</p>
+
+            <button onClick={() => {
+                localStorage.setItem("count", String(count + 1));
+                setCount((count) => count + 1);
+                }
+            }>
+                count is {count}
+            </button>
         </>
     )
 }
