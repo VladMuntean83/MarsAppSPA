@@ -1,6 +1,6 @@
 import { Routes, Route, Link } from 'react-router-dom'
 import { HomePage, About } from './Pages.tsx'
-import Nasa from './Nasa'
+import Nasa from './Nasa.tsx'
 import './App.css'
 
 function App() {

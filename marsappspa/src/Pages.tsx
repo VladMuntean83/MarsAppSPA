@@ -1,4 +1,4 @@
-import {TitleImageTemplate} from "./Nasa";
+import TitleImageTemplate from "./components/TitleImageTemplate.tsx";
 
 export function HomePage() {
     return (
