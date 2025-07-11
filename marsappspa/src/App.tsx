@@ -1,70 +1,27 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import { Routes, Route, Link } from 'react-router-dom'
+import { HomePage, About } from './Pages.tsx'
+import Nasa from './Nasa.tsx'
 import './App.css'
 
 function App() {
-  const [count, setCount] = useState(0)
-
-  return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 2)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
-}
-
-
-export function Nasa() {
-    // const [count, setCount] = useState(0);
-
     return (
-        <>
-            <title>Welcome to Nasa!</title>
-            <img
-                src="https://upload.wikimedia.org/wikipedia/commons/e/e5/NASA_logo.svg"
-                alt="NASA Logo"
-                width="200"
-            />
-            <p>Welcome to Nasa!</p>
-            <p>You are here</p>
-        </>
-    )
+        <div>
+            <nav>
+                <Link to="/">Home</Link> |{" "}
+                <Link to="/about">About</Link> |{" "}
+                <Link to="/counter">Counter</Link>
+            </nav>
+
+            <Routes>
+                <Route path="/" element={<HomePage />} />
+                <Route path="/about" element={<About />} />
+                <Route path="/counter" element={<Nasa />} />
+            </Routes>
+        </div>
+    );
 }
 
-// @ts-ignore
-export function TitleImageTemplate({ title, image, p1, p2 }) {
-    return (
-        <>
-            <h1>{title}</h1>
-            <img
-                src={image}
-                alt="Logo"
-                width="200"
-            />
-            <p>{p1}</p>
-            <p>{p2}</p>
-        </>
-    )
-}
+
 
 
 export default App;
